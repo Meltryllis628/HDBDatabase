@@ -1,0 +1,22 @@
+The current data stored in the database follows such structure:
+
+files(set)
+  |----file1(set)
+  |      |----fileID(int)
+  |      |----uploader(string)
+  |      |----uploadTime(timestamp)
+  |      |----fileName(string)
+  |      |----records(set)
+  |              |----record1(set)
+  |              |       |----Unit(string)
+  |              |       |----Block(int)
+  |              |       |----Street(string)
+  |              |       |----PostalCode(int)
+  |              |----record2(set)
+  |              |----......
+  |              |----recordn(set)
+  |----file2(set)
+  |----......
+  |----filen(set)
+
+Current interact is upload a file to the cloud and download a file from the cloud.
