@@ -72,7 +72,7 @@ def adding_data(file_name,file_id,user_id):
     #     for column in columns:
     #         row_ref.update({column:list(df[column])[i]})
 
-def upload_ultimate(file_name,source_file_path,user_id):
+def upload_record(uuid,source_file_path,user_id):
     file_id = generating_file_id(user_id) # or something else, need to be unique for every file
     adding_data(file_name,file_id,user_id)
     upload_blob(source_file_path,file_id)
