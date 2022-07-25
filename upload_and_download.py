@@ -56,9 +56,37 @@ def download_all_files(gdb_file_path,xls_file_path,output_file_path,uuid):
     else:
         print(u'No such document!')
 
-uuid = "test0"
-gdb_file_path = "test.gdb"
-xls_file_path = "test.xls"
-output_file_path = "testout.xls"
-upload_all_files(gdb_file_path,xls_file_path,output_file_path,uuid)
+def file_list():
+    jsonString = "["
+    records = db.collection(u'records').stream()
+    for record in records:
+        recordDict = record.to_dict()
+        try:
+            recordDict["uploadTime"] = str(recordDict["uploadTime"])
+        except:
+            pass
+        try:
+            recordDict["create_time"] = str(recordDict["create_time"])
+        except:
+            pass
+        recordStr = str(recordDict)
+        jsonString += (recordStr + ", ")
+    jsonString = jsonString[:-2]
+    jsonString += "]"
+    return jsonString#a string
+
+
+def delete_certain_file(uuid):
+    try:
+        db.collection(u'records').document(uuid).delete()
+        print("Deleted")
+    except:
+        print("Delete Failed")
+json = file_list()
+#print(json)
+# uuid = "test0"
+# gdb_file_path = "test.gdb"
+# xls_file_path = "test.xls"
+# output_file_path = "testout.xls"
+# upload_all_files(gdb_file_path,xls_file_path,output_file_path,uuid)
 
